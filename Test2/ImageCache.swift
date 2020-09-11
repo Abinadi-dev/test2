@@ -7,3 +7,21 @@
 //
 
 import Foundation
+import UIKit
+
+final class ImageCache {
+  
+  static let shared = ImageCache()
+  
+  private init() { }
+  
+  private let cache: NSCache<NSString, UIImage> = NSCache()
+  
+  func saveImage(with url: URL, image: UIImage) {
+    self.cache.setObject(image, forKey: url.absoluteString as NSString)
+  }
+  
+  func retrieveImage(with url: URL) -> UIImage? {
+    return self.cache.object(forKey: url.absoluteString as NSString)
+  }
+}

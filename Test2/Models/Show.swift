@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+struct Show: Codable {
+  let name: String
+  let image_thumbnail_path: URL
+  let start_date: String?
+  let end_date: String?
+}

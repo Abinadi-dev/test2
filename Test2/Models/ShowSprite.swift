@@ -7,3 +7,21 @@
 //
 
 import Foundation
+
+struct ShowSprite: Decodable {
+  let spriteURL: URL
+  
+  enum CodingKeys: String, CodingKey {
+    case sprites
+  }
+  
+  enum SpriteContainerCodingKeys: String, CodingKey {
+    case frontImageURL = "front_default"
+  }
+  
+  init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
+    let spriteContainer = try container.nestedContainer(keyedBy: SpriteContainerCodingKeys.self, forKey: .sprites)
+    self.spriteURL = try spriteContainer.decode(URL.self, forKey: .frontImageURL)
+  }
+}

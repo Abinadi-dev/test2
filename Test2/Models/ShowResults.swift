@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+struct ShowResults: Codable {
+  let tv_shows: [Show]
+}
